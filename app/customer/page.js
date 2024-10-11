@@ -10,7 +10,7 @@ const CustomerPage = () => {
   const [editingCustomer, setEditingCustomer] = useState(null);
 
   const fetchCustomers = async () => {
-    const response = await fetch('/api/customer');
+    const response = await fetch(`${APIBASE}/customer`);
     const data = await response.json();
     setCustomers(data);
   };
