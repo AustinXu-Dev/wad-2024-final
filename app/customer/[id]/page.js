@@ -4,11 +4,12 @@ import { Container } from '@mui/material';
 import { useEffect, useState } from 'react';
 
 const CustomerDetailPage = ({ params }) => {
+    const APIBASE = process.env.NEXT_PUBLIC_API_URL;
   const [customer, setCustomer] = useState(null);
   const { id } = params;
 
   const fetchCustomerDetail = async () => {
-    const response = await fetch(`/api/customer/${id}`);
+    const response = await fetch(`${APIBASE}/customer/${id}`);
     const data = await response.json();
     setCustomer(data);
   };

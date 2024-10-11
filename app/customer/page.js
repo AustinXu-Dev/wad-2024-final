@@ -5,6 +5,7 @@ import CustomerForm from './components/CustomerForm';
 import { useState, useEffect } from 'react';
 
 const CustomerPage = () => {
+    const APIBASE = process.env.NEXT_PUBLIC_API_URL;
   const [customers, setCustomers] = useState([]);
   const [editingCustomer, setEditingCustomer] = useState(null);
 
@@ -23,7 +24,7 @@ const CustomerPage = () => {
   };
 
   const handleDelete = async (id) => {
-    await fetch(`/api/customer/${id}`, {
+    await fetch(`${APIBASE}/customer/${id}`, {
       method: 'DELETE',
     });
     fetchCustomers(); // Re-fetch customers after deletion
@@ -32,7 +33,7 @@ const CustomerPage = () => {
   const handleSubmit = async (customerData) => {
     if (editingCustomer) {
       // Update existing customer
-      await fetch(`/api/customer`, {
+      await fetch(`${APIBASE}/customer`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -41,7 +42,7 @@ const CustomerPage = () => {
       });
     } else {
       // Add new customer
-      await fetch(`/api/customer`, {
+      await fetch(`${APIBASE}/customer`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
